@@ -32,7 +32,7 @@ downloadPNG.addEventListener('click', dlCanvas, false);
 //$('select[multiple]').multiselect()
 
 //change these to reflect Alamosa when making the annual update
-var startlabels = ['1985','','','','','1990','','','','','1995','','','','','2000','','','','','2005','','','','','2010','','','','','2015','','','','','2020','','','2023'];
+var startlabels = ['1985','','','','','1990','','','','','1995','','','','','2000','','','','','2005','','','','','2010','','','','','2015','','','','','2020','','2022'];
 var startcolors = ["#be66a2", "#65a620", "#7b6888", "#546e91", "#bca44a", "#5b388f", "#e98125", "#961a1a"];
 var startdata = [992,1389,129,137,2078,695,756,436,0,0,992,1389,129,137,2078,695,756,436,0,0]; //Load Alamosa County manually for now
 const jobyears = ['jobs_1985','jobs_1986','jobs_1987','jobs_1988','jobs_1989','jobs_1990','jobs_1991','jobs_1992','jobs_1993','jobs_1994','jobs_1995','jobs_1996','jobs_1997','jobs_1998','jobs_1999','jobs_2000',
