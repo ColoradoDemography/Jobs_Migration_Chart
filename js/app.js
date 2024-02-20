@@ -7,8 +7,8 @@ Chart.defaults.color = '#000';
 
 //Data urls
 var bea_url = "https://gis.dola.colorado.gov/lookups/bea_jobs?county="
-var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&county="
-var mig_reg_url = "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&reg_num="
+var mig_url = "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&county="
+var mig_reg_url = "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&reg_num="
 
 //function to create a white background for the canvas and convert to a png
 function dlCanvas(){
@@ -32,11 +32,11 @@ downloadPNG.addEventListener('click', dlCanvas, false);
 //$('select[multiple]').multiselect()
 
 //change these to reflect Alamosa when making the annual update
-var startlabels = ['1985','','','','','1990','','','','','1995','','','','','2000','','','','','2005','','','','','2010','','','','','2015','','','','','2020','2021'];
+var startlabels = ['1985','','','','','1990','','','','','1995','','','','','2000','','','','','2005','','','','','2010','','','','','2015','','','','','2020','','','2023'];
 var startcolors = ["#be66a2", "#65a620", "#7b6888", "#546e91", "#bca44a", "#5b388f", "#e98125", "#961a1a"];
 var startdata = [992,1389,129,137,2078,695,756,436,0,0,992,1389,129,137,2078,695,756,436,0,0]; //Load Alamosa County manually for now
 const jobyears = ['jobs_1985','jobs_1986','jobs_1987','jobs_1988','jobs_1989','jobs_1990','jobs_1991','jobs_1992','jobs_1993','jobs_1994','jobs_1995','jobs_1996','jobs_1997','jobs_1998','jobs_1999','jobs_2000',
-'jobs_2001','jobs_2002','jobs_2003','jobs_2004','jobs_2005','jobs_2006','jobs_2007','jobs_2008','jobs_2009','jobs_2010','jobs_2011','jobs_2012','jobs_2013','jobs_2014','jobs_2015','jobs_2016','jobs_2017','jobs_2018','jobs_2019','jobs_2020','jobs_2021']
+'jobs_2001','jobs_2002','jobs_2003','jobs_2004','jobs_2005','jobs_2006','jobs_2007','jobs_2008','jobs_2009','jobs_2010','jobs_2011','jobs_2012','jobs_2013','jobs_2014','jobs_2015','jobs_2016','jobs_2017','jobs_2018','jobs_2019','jobs_2020','jobs_2021','jobs_2022','jobs_2023']
 
 window.onload = function() {
 	var ctx = document.getElementById('canvas').getContext('2d');
@@ -85,6 +85,8 @@ window.onload = function() {
   jobsData.push(firstdata[0].jobs_2019 - firstdata[0].jobs_2018);
   jobsData.push(firstdata[0].jobs_2020 - firstdata[0].jobs_2019);
   jobsData.push(firstdata[0].jobs_2021 - firstdata[0].jobs_2020);
+  jobsData.push(firstdata[0].jobs_2022 - firstdata[0].jobs_2021);
+  jobsData.push(firstdata[0].jobs_2023 - firstdata[0].jobs_2022);
 
   /* for (i in firstdata[0]){
     if (jobyears.indexOf(i) !== -1){
@@ -261,7 +263,9 @@ function handler(event){
       jobsData.push(firstdata[0].jobs_2019 - firstdata[0].jobs_2018);
       jobsData.push(firstdata[0].jobs_2020 - firstdata[0].jobs_2019);
       jobsData.push(firstdata[0].jobs_2021 - firstdata[0].jobs_2020);
-      console.log(jobsData);
+      jobsData.push(firstdata[0].jobs_2022 - firstdata[0].jobs_2021);
+      jobsData.push(firstdata[0].jobs_2023 - firstdata[0].jobs_2022);
+      
 
       for (i in seconddata){
         countyNetMigData.push(seconddata[i].netmig);
@@ -308,7 +312,7 @@ function getDataJobs(fips) {
 
 function getDataCountyMig(fips){
   var data = $.ajax({
-    url: "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&county="+fips,
+    url: "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&county="+fips,
     dataType: 'json',
     async: false,
   });
@@ -318,7 +322,7 @@ function getDataCountyMig(fips){
 
 function getDataRegionMig(fips){
   var data = $.ajax({
-    url: "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021&reg_num="+fips,
+    url: "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&reg_num="+fips,
     dataType: 'json',
     async: false,
   });
