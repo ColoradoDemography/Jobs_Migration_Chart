@@ -9,9 +9,13 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 	 <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" charset="utf-8"></script>
 	 <link type="text/css" rel="stylesheet" href="./css/common.css" async=""> 
+	 <link href="css/superfish.css" rel="stylesheet" media="screen">
+
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/saveSvgAsPng.js"></script>
+	<script src="js/jQuery.js"></script>
+	
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-80DP2C1J1Y"></script>
 	<script>
@@ -89,7 +93,7 @@
 			<option value="9" >Baca County</option>
 			<option value="11" >Bent County</option>
 			<option value="13" >Boulder County</option>
-			<option value="14" >Broomfield City & County</option>
+			<option value="14" >Broomfield City and County</option>
 			<option value="15" >Chaffee County</option>
 			<option value="17" >Cheyenne County</option>
 			<option value="19" >Clear Creek County</option>
@@ -98,7 +102,7 @@
 			<option value="25" >Crowley County</option>
 			<option value="27" >Custer County</option>
 			<option value="29" >Delta County</option>
-			<option value="31" >Denver City & County</option>
+			<option value="31" >Denver City and County</option>
 			<option value="33" >Dolores County</option>
 			<option value="35" >Douglas County</option>
 			<option value="37" >Eagle County</option>
@@ -174,9 +178,9 @@
 <!--<td></td><td></td><td></td>
 		</div>-->
 		<td class="lookup_cll">
-			<div class="dropdown AClass">
-				<button class="dropbtn"  id="estimate"><i class="fas fas fa-download fa-2x" style='color: black;'></i></button>
-				<div class="dropdown-content">
+			<div class="dropdown AClass" tabindex="0">
+				<button class="dropbtn"  id="estimate" tabindex="0"><i class="fas fas fa-download fa-2x" style='color: black;'></i></button>
+				<div class="dropdown-content" tabindex="0">
 				<ul class='dd-list'>
 					<li><a href='https://storage.googleapis.com/co-publicdata/components-change-county.csv' id='est_csv'>Download the Migration Data</a></li>
 					<li><a href='https://storage.googleapis.com/co-publicdata/bea_jobs.csv' id='est_census'>Download the Jobs Data</a></li>
@@ -203,6 +207,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 
 	<script src="js/app.js"></script>
+	<script src="js/superfish.js"></script>				
+	<script>
+		jQuery(document).ready(function() {
+			jQuery('ul.dd-list').superfish();
+		});
+	</script>
 
 
 </body>

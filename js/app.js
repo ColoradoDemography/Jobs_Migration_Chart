@@ -3,6 +3,9 @@ var selectElemSource = document.getElementById('sel2');
 var selectElemStat = document.getElementById('sel3');
 var drawElement = document.getElementById('drawbtn');
 var srcCanvas = document.getElementById('canvas');
+var dropElement = document.getElementById('dropbtn');
+var menuItems = document.querySelectorAll("ul.dd-list");
+console.log(menuItems);
 Chart.defaults.color = '#000';
 
 //Data urls
@@ -186,7 +189,7 @@ window.onload = function() {
         },
         subtitle: {
           display: true,
-          text: 'US Bureau of Economic Analysis, Migration Data and Visualization by Colorado State Demography Office. Print date: '+date(new Date),
+          text: 'Quarterly Census of Employment and Wages, Migration Data and Visualization by Colorado State Demography Office. Print date: '+date(new Date),
           position: 'bottom',
           font: {
             size: 10
@@ -226,49 +229,79 @@ function handler(event){
       var jobsData = [];
       var countyNetMigData = [];
 
-      jobsData.push(firstdata[0].jobs_1985 - firstdata[0].jobs_1984);
-      jobsData.push(firstdata[0].jobs_1986 - firstdata[0].jobs_1985);
-      jobsData.push(firstdata[0].jobs_1987 - firstdata[0].jobs_1986);
-      jobsData.push(firstdata[0].jobs_1988 - firstdata[0].jobs_1987);
-      jobsData.push(firstdata[0].jobs_1989 - firstdata[0].jobs_1988);
-      jobsData.push(firstdata[0].jobs_1990 - firstdata[0].jobs_1989);
-      jobsData.push(firstdata[0].jobs_1991 - firstdata[0].jobs_1990);
-      jobsData.push(firstdata[0].jobs_1992 - firstdata[0].jobs_1991);
-      jobsData.push(firstdata[0].jobs_1993 - firstdata[0].jobs_1992);
-      jobsData.push(firstdata[0].jobs_1994 - firstdata[0].jobs_1993);
-      jobsData.push(firstdata[0].jobs_1995 - firstdata[0].jobs_1994);
-      jobsData.push(firstdata[0].jobs_1996 - firstdata[0].jobs_1995);
-      jobsData.push(firstdata[0].jobs_1997 - firstdata[0].jobs_1996);
-      jobsData.push(firstdata[0].jobs_1998 - firstdata[0].jobs_1997);
-      jobsData.push(firstdata[0].jobs_1999 - firstdata[0].jobs_1998);
-      jobsData.push(firstdata[0].jobs_2000 - firstdata[0].jobs_1999);
-      jobsData.push(firstdata[0].jobs_2001 - firstdata[0].jobs_2000);
-      jobsData.push(firstdata[0].jobs_2002 - firstdata[0].jobs_2001);
-      jobsData.push(firstdata[0].jobs_2003 - firstdata[0].jobs_2002);
-      jobsData.push(firstdata[0].jobs_2004 - firstdata[0].jobs_2003);
-      jobsData.push(firstdata[0].jobs_2005 - firstdata[0].jobs_2004);
-      jobsData.push(firstdata[0].jobs_2006 - firstdata[0].jobs_2005);
-      jobsData.push(firstdata[0].jobs_2007 - firstdata[0].jobs_2006);
-      jobsData.push(firstdata[0].jobs_2008 - firstdata[0].jobs_2007);
-      jobsData.push(firstdata[0].jobs_2009 - firstdata[0].jobs_2008);
-      jobsData.push(firstdata[0].jobs_2010 - firstdata[0].jobs_2009);
-      jobsData.push(firstdata[0].jobs_2011 - firstdata[0].jobs_2010);
-      jobsData.push(firstdata[0].jobs_2012 - firstdata[0].jobs_2011);
-      jobsData.push(firstdata[0].jobs_2013 - firstdata[0].jobs_2012);
-      jobsData.push(firstdata[0].jobs_2014 - firstdata[0].jobs_2013);
-      jobsData.push(firstdata[0].jobs_2015 - firstdata[0].jobs_2014);
-      jobsData.push(firstdata[0].jobs_2016 - firstdata[0].jobs_2015);
-      jobsData.push(firstdata[0].jobs_2017 - firstdata[0].jobs_2016);
-      jobsData.push(firstdata[0].jobs_2018 - firstdata[0].jobs_2017);
-      jobsData.push(firstdata[0].jobs_2019 - firstdata[0].jobs_2018);
-      jobsData.push(firstdata[0].jobs_2020 - firstdata[0].jobs_2019);
-      jobsData.push(firstdata[0].jobs_2021 - firstdata[0].jobs_2020);
-      jobsData.push(firstdata[0].jobs_2022 - firstdata[0].jobs_2021);
-      jobsData.push(firstdata[0].jobs_2023 - firstdata[0].jobs_2022);
-      
+      if (Number(countyFips) !== 14){
+        jobsData.push(firstdata[0].jobs_1985 - firstdata[0].jobs_1984);
+        jobsData.push(firstdata[0].jobs_1986 - firstdata[0].jobs_1985);
+        jobsData.push(firstdata[0].jobs_1987 - firstdata[0].jobs_1986);
+        jobsData.push(firstdata[0].jobs_1988 - firstdata[0].jobs_1987);
+        jobsData.push(firstdata[0].jobs_1989 - firstdata[0].jobs_1988);
+        jobsData.push(firstdata[0].jobs_1990 - firstdata[0].jobs_1989);
+        jobsData.push(firstdata[0].jobs_1991 - firstdata[0].jobs_1990);
+        jobsData.push(firstdata[0].jobs_1992 - firstdata[0].jobs_1991);
+        jobsData.push(firstdata[0].jobs_1993 - firstdata[0].jobs_1992);
+        jobsData.push(firstdata[0].jobs_1994 - firstdata[0].jobs_1993);
+        jobsData.push(firstdata[0].jobs_1995 - firstdata[0].jobs_1994);
+        jobsData.push(firstdata[0].jobs_1996 - firstdata[0].jobs_1995);
+        jobsData.push(firstdata[0].jobs_1997 - firstdata[0].jobs_1996);
+        jobsData.push(firstdata[0].jobs_1998 - firstdata[0].jobs_1997);
+        jobsData.push(firstdata[0].jobs_1999 - firstdata[0].jobs_1998);
+        jobsData.push(firstdata[0].jobs_2000 - firstdata[0].jobs_1999);
+        jobsData.push(firstdata[0].jobs_2001 - firstdata[0].jobs_2000);
+        jobsData.push(firstdata[0].jobs_2002 - firstdata[0].jobs_2001);
+        jobsData.push(firstdata[0].jobs_2003 - firstdata[0].jobs_2002);
+        jobsData.push(firstdata[0].jobs_2004 - firstdata[0].jobs_2003);
+        jobsData.push(firstdata[0].jobs_2005 - firstdata[0].jobs_2004);
+        jobsData.push(firstdata[0].jobs_2006 - firstdata[0].jobs_2005);
+        jobsData.push(firstdata[0].jobs_2007 - firstdata[0].jobs_2006);
+        jobsData.push(firstdata[0].jobs_2008 - firstdata[0].jobs_2007);
+        jobsData.push(firstdata[0].jobs_2009 - firstdata[0].jobs_2008);
+        jobsData.push(firstdata[0].jobs_2010 - firstdata[0].jobs_2009);
+        jobsData.push(firstdata[0].jobs_2011 - firstdata[0].jobs_2010);
+        jobsData.push(firstdata[0].jobs_2012 - firstdata[0].jobs_2011);
+        jobsData.push(firstdata[0].jobs_2013 - firstdata[0].jobs_2012);
+        jobsData.push(firstdata[0].jobs_2014 - firstdata[0].jobs_2013);
+        jobsData.push(firstdata[0].jobs_2015 - firstdata[0].jobs_2014);
+        jobsData.push(firstdata[0].jobs_2016 - firstdata[0].jobs_2015);
+        jobsData.push(firstdata[0].jobs_2017 - firstdata[0].jobs_2016);
+        jobsData.push(firstdata[0].jobs_2018 - firstdata[0].jobs_2017);
+        jobsData.push(firstdata[0].jobs_2019 - firstdata[0].jobs_2018);
+        jobsData.push(firstdata[0].jobs_2020 - firstdata[0].jobs_2019);
+        jobsData.push(firstdata[0].jobs_2021 - firstdata[0].jobs_2020);
+        jobsData.push(firstdata[0].jobs_2022 - firstdata[0].jobs_2021);
+        jobsData.push(firstdata[0].jobs_2023 - firstdata[0].jobs_2022);
+      } else {
+        jobsData = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        jobsData.push(firstdata[0].jobs_2003 - firstdata[0].jobs_2002);
+        jobsData.push(firstdata[0].jobs_2004 - firstdata[0].jobs_2003);
+        jobsData.push(firstdata[0].jobs_2005 - firstdata[0].jobs_2004);
+        jobsData.push(firstdata[0].jobs_2006 - firstdata[0].jobs_2005);
+        jobsData.push(firstdata[0].jobs_2007 - firstdata[0].jobs_2006);
+        jobsData.push(firstdata[0].jobs_2008 - firstdata[0].jobs_2007);
+        jobsData.push(firstdata[0].jobs_2009 - firstdata[0].jobs_2008);
+        jobsData.push(firstdata[0].jobs_2010 - firstdata[0].jobs_2009);
+        jobsData.push(firstdata[0].jobs_2011 - firstdata[0].jobs_2010);
+        jobsData.push(firstdata[0].jobs_2012 - firstdata[0].jobs_2011);
+        jobsData.push(firstdata[0].jobs_2013 - firstdata[0].jobs_2012);
+        jobsData.push(firstdata[0].jobs_2014 - firstdata[0].jobs_2013);
+        jobsData.push(firstdata[0].jobs_2015 - firstdata[0].jobs_2014);
+        jobsData.push(firstdata[0].jobs_2016 - firstdata[0].jobs_2015);
+        jobsData.push(firstdata[0].jobs_2017 - firstdata[0].jobs_2016);
+        jobsData.push(firstdata[0].jobs_2018 - firstdata[0].jobs_2017);
+        jobsData.push(firstdata[0].jobs_2019 - firstdata[0].jobs_2018);
+        jobsData.push(firstdata[0].jobs_2020 - firstdata[0].jobs_2019);
+        jobsData.push(firstdata[0].jobs_2021 - firstdata[0].jobs_2020);
+        jobsData.push(firstdata[0].jobs_2022 - firstdata[0].jobs_2021);
+        jobsData.push(firstdata[0].jobs_2023 - firstdata[0].jobs_2022);
+      }
 
       for (i in seconddata){
-        countyNetMigData.push(seconddata[i].netmig);
+        if (Number(countyFips) !== 14){
+          countyNetMigData.push(seconddata[i].netmig);
+        } else
+        {
+          countyNetMigData.push(seconddata[i].netmig);
+          countyNetMigData.splice(0,16,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+        }
       }
   
       const netMigDataset = {
@@ -312,7 +345,7 @@ function getDataJobs(fips) {
 
 function getDataCountyMig(fips){
   var data = $.ajax({
-    url: "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&county="+fips,
+    url: "https://gis.dola.colorado.gov/lookups/components?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022&county="+fips,
     dataType: 'json',
     async: false,
   });
@@ -322,7 +355,7 @@ function getDataCountyMig(fips){
 
 function getDataRegionMig(fips){
   var data = $.ajax({
-    url: "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023&reg_num="+fips,
+    url: "https://gis.dola.colorado.gov/lookups/components_region?vars=netmigration&year=1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022&reg_num="+fips,
     dataType: 'json',
     async: false,
   });
